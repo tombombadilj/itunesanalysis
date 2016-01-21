@@ -26,6 +26,7 @@ artist_lst = list()
 count_lst = list()
 length_lst = list()
 genre_lst = list()
+year_lst = list()
 
 #looking things up
 for entry in all:
@@ -41,9 +42,34 @@ for entry in all:
     length_lst.append((name, artist, length))
     genre = lookup(entry, 'Genre')
     genre_lst.append(genre)
+    year = lookup(entry, 'Year')
+    year_lst.append((name, artist, year))
 
     if name is None or artist is None or genre is None or length is None:
         continue
+
+year_lst_1 = list()
+for name, artist, year in year_lst:
+    if name is not None and year is not None:
+        year_lst_1.append((name, artist, year))
+year_order = list()
+for name, artist, year in year_lst_1:
+    year_order.append((year, name, artist))
+year_order.sort()
+print "20 oldest songs in the library:"
+rank = 0
+just_year = list()
+for year, name, artist in year_order[0:20]:
+    rank = rank + 1
+    ranka = str(rank)+"."
+    just_year.append(year)
+    print ranka, name, artist, year
+print "\n20 most recently added songs in the library:"
+rank = 0
+for year, name, artist in year_order[len(year_order)-20:len(year_order)]:
+    rank = rank+1
+    ranka = str(rank)+"."
+    print ranka, name, artist, year
 
 #counting artists
 artist_lst_1 = list()
@@ -136,7 +162,7 @@ labels = genre_name
 sizes = genre_perct
 patches, texts = plt.pie(sizes)
 plt.legend(patches, labels, loc ="best")
-plt.title('Top Genre')
+plt.title('Top Genres')
 plt.axis('equal')
 plt.tight_layout()
 plt.show()
@@ -204,6 +230,7 @@ for length, name, artist in length_order[0:20]:
 x = np.array(justlength, np.int32)
 x = x/60000.0
 plt.hist(x, bins = 200)
+plt.title('Track Duration Count')
 plt.xlabel('Track Duration')
 plt.ylabel('Count')
 plt.show()
@@ -218,6 +245,7 @@ print "Total number of songs under 20 minutes:", len(justshort)
 x = np.array(justshort, np.int32)
 x = x/60000.0
 plt.hist(x, bins = 200)
+plt.title('Track Duration Count (<20 minutes)')
 plt.xlabel('Track Duration')
 plt.ylabel('Count')
 plt.show()
