@@ -64,7 +64,7 @@ for year, name, artist in year_order[0:20]:
     ranka = str(rank)+"."
     just_year.append(year)
     print ranka, name, artist, year
-print "\n20 most recently added songs in the library:"
+print "\n20 most recent songs in the library:"
 rank = 0
 for year, name, artist in year_order[len(year_order)-20:len(year_order)]:
     rank = rank+1

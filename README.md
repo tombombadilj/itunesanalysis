@@ -7,7 +7,9 @@
 3. Run the code
 
 ##It will generate three different lists:
-1. Top 20 artists
+1. 20 oldest songs
+2. 20 most recent songs
+2. Top 20 artists
 2. Top 20 genres
 3. Top 20 track duration
 
