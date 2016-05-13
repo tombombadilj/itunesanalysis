@@ -1,10 +1,16 @@
+
 import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import sys
 
-fname = 'jasons.xml'
+if len(sys.argv) < 2:
+    print 'usage: python %s inputfilename' % sys.argv[0]
+    sys.exit(1)
+
+fname = sys.argv[1]
 
 #function to look up keywords in xml
 def lookup(d, key):
